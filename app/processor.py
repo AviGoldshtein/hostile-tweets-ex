@@ -8,7 +8,7 @@ def get_black_list():
     base_route = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     path = os.path.join(base_route, "data", "weapons.txt")
     with open(path, mode="r", encoding="utf-8") as black_list:
-        return black_list.read().split()
+        return black_list.read().lower().split()
 
 
 class Processor:
@@ -42,9 +42,11 @@ class Processor:
     @staticmethod
     def check_for_weapons_in_text(txt):
         black_list = get_black_list()
+        txt = txt.replace(",", "")
+        txt = txt.replace(".", "")
         weapon = None
         for word in txt.split():
-            if word in black_list:
+            if word.lower() in black_list:
                 weapon = word
                 break
         return weapon
