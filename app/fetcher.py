@@ -14,5 +14,5 @@ class Fetcher:
         with MongoClient(uri) as client:
             self.db = client[self.database_name]
             collection = self.db[self.collection_name]
-            result = list(collection.find({}))
+            result = list(collection.find({}, {"TweetID": 0}))
             return result

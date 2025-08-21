@@ -1,16 +1,12 @@
 from fastapi import FastAPI
 from app.manager import Manager
-from bson.json_util import dumps
-import uvicorn
+from app.helper import convert_bson_types
 
 
 app = FastAPI()
 
 manager = Manager()
 
-@app.get("analysis_information")
+@app.get("/analysis_information")
 def analysis_information():
-    return dumps(manager.get_results())
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000)
+    return convert_bson_types(manager.get_results())

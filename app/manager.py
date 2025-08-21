@@ -10,9 +10,11 @@ class Manager:
         self.run_prepossessing()
 
     def run_prepossessing(self):
+        print("starting analyzing...")
         self.processor.find_rarest_word_for_each()
         self.processor.express_sentiment()
         self.processor.weapons_detected()
+        print("analyzing ended.")
 
     def get_results(self):
         return self.processor.get_df_as_dictionary()
