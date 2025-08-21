@@ -21,5 +21,5 @@ class Processor:
     def weapons_detected(self):
         pass
 
-    def get_df(self):
-        return self.df
+    def get_df_as_dictionary(self):
+        return self.df.to_dict()
