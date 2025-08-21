@@ -2,15 +2,11 @@ from pymongo import MongoClient
 import os
 
 class Fetcher:
-    # def __init__(self, user="IRGC", password="iraniraniran", database_name="IranMalDB", collection_name="tweets"):
     def __init__(self, collection_name="tweets"):
         self.client = None
         self.db = None
-        # self.user = user
         self.user = os.getenv("MONGO_USER")
-        # self.password = password
         self.password = os.getenv("MONGO_PASSWORD")
-        # self.database_name = database_name
         self.database_name = os.getenv("MONGO_DATABASE")
         self.collection_name = collection_name
 

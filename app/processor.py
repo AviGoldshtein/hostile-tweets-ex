@@ -32,9 +32,9 @@ class Processor:
     def check_sentiment(txt):
         score = SentimentIntensityAnalyzer().polarity_scores(txt)
         compound = score['compound']
-        if compound <= 0.5:
+        if compound <= -0.5:
             return "negative"
-        elif compound < 1.5:
+        elif compound < 0.5:
             return "neutral"
         else:
             return "positive"
