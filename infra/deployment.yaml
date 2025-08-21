@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hostile-tweets-ex-app
+  namespace: avigoldshtein-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hostile-tweets-ex-app
+  template:
+    metadata:
+      labels:
+        app: hostile-tweets-ex-app
+    spec:
+      containers:
+      - name: hostile-tweets-ex-app
+        image: avigoldshtein/hostile-tweets-ex-app:latest
+        env:
+        - name: MONGO_USER
+          valueFrom:
+            secretKeyRef:
+              name: hostile-tweets-secret
+              key: MONGO_USER
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: hostile-tweets-secret
+              key: MONGO_PASSWORD
+        - name: MONGO_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: hostile-tweets-secret
+              key: MONGO_DATABASE
+        ports:
+        - containerPort: 8000
