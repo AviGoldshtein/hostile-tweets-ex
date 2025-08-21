@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: hostile-tweets-ex-app
-        image: avigoldshtein/hostile-tweets-ex-app:latest
+        image: avigoldshtein/hostile-tweets-ex-app:v3
+        imagePullPolicy: Always
         env:
         - name: MONGO_USER
           valueFrom:

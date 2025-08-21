@@ -2,7 +2,12 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pandas as pd
 import os
 import nltk
-nltk.download('vader_lexicon')
+
+
+nltk_dir = "/tmp/nltk_data"
+os.makedirs(nltk_dir, exist_ok=True)
+nltk.data.path.append(nltk_dir)
+nltk.download('vader_lexicon', download_dir=nltk_dir, quiet=True)
 
 def get_black_list():
     base_route = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
